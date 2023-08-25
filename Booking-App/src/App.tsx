@@ -1,22 +1,34 @@
-import { useState } from 'react';
-import Calendar from 'react-calendar';
-import 'react-calendar/dist/Calendar.css';
-import DateSeparate from './DateSeparate';
-import { Value } from './type';
-
+import Nav from './client/components/Nav';
+import { Outlet, Routes, Route } from "react-router-dom";
+import HomePage from './client/pages/HomePage';
+import CalendarPage from './client/pages/CalendarPage';
 
 
 function App() {
-  const [value, onChange] = useState<Value>(new Date());
 
-  console.log(value);
+  const Layout = () => {
+    return(
+      <>
+        <Nav />
+        
+        <Outlet />
+      </>
+    )
+  }
   
 
   return (
     <>
-      <Calendar onChange={onChange} value={value} />
-      <span>{value ? value.toString() : null}</span>
-      <DateSeparate />
+      <Routes>
+        {/* Navbar가 필요한 route */}
+        <Route path='/' element={<Layout />}>
+          <Route index element={<HomePage />} />
+          <Route path='calendar' element={<CalendarPage />} />
+        </Route>
+
+        {/* Navbar가 필요한 route */}
+        <Route path='/noNav' element={<HomePage />} />
+      </Routes>
     </>
   )
 }
