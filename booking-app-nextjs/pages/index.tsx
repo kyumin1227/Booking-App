@@ -9,7 +9,7 @@ export default function Home() {
   return (
     <>
       <h1>Home</h1>
-      <Link href={"/books"}>books</Link>
+      <Link href={"/rooms"}>rooms</Link>
     </>
   )
 }
