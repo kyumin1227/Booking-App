@@ -8,15 +8,14 @@ export default async function handle(req: NextApiRequest, res: NextApiResponse) 
     switch (req.method) {
         case "POST":
             const { roomName, startTime, endTime, createDate, timeUnit }: tRoomsCreate = req.body;
-            const roomDate = []
-            for (let i = 0; i < createDate; i++) {
-                roomDate.push([i+1])
-            }
+
             const roomData = {
                 name: roomName,
                 info: "아직",
                 price: 1000,
                 timeUnit,
+                startTime: startTime,
+                endTime: endTime
             }
             const room = await Room.create(roomData);
             res.status(201).send(room);
