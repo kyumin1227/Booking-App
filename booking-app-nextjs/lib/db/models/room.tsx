@@ -5,14 +5,17 @@ const roomSchema = new mongoose.Schema(
         name: { type: String, default: "" },
         info: { type: String, default: "" },
         price: { type: Number, default: 0 },
-        timeUnit: {type: Number, default: 60}, // 예약 시간 단위
+        timeUnit: { type: Number, default: 60 }, // 예약 시간 단위
+        startTime: { type: Date, default: Date.now },
+        endTime: { type: Date, default: Date.now },
+        test: {type: String, default: "안녕"},
         booked: [{ type: mongoose.Schema.Types.ObjectId, ref: "reservations" }],
         createAt: {type: Date, default: Date.now}
     }
 )
 
 const RoomModel =
-  mongoose.models["Rooms"] ||
+//   mongoose.models.Rooms ||
     mongoose.model("Rooms", roomSchema);
   
 export default RoomModel;
